@@ -6,7 +6,7 @@ language: java
 jdk: oraclejdk8
 
 before_install:
-   - sudo apt-get install rpm curl
+   - sudo apt-get install rpm
 
 script:
    - mvn clean install -B
@@ -14,7 +14,7 @@ script:
    - cp target/*jar ~/rpmbuild/SOURCES
    - export VERSION=$(sed -n '0,/^.*<version>\(.*\)<\/version>.*$/s//\1/p' pom.xml)
    - rpmbuild -ba paella-opencast.spec
-   - curl -i -u pkg:3d37ba94-a305-4185-8989-861e2491fc https://pkg.opencast.org/upload -F file=@rpmbuild/RPMS/x86_64/${VERSION}
 
 after_success:
-   - curl -i -u pkg:3d37ba94-a305-4185-8989-861e2491fc https://pkg.opencast.org/upload -F file=@rpmbuild/RPMS/x86_64/${VERSION}
+   - curl -i -u pkg:3d37ba94-a305-4185-8989-861e2491fc https://pkg.opencast.org/upload \
+     -F file=@rpmbuild/RPMS/x86_64/paella-opencast-${VERSION}-1.x86_64.rpm
