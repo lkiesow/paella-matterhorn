@@ -16,4 +16,4 @@ script:
    - rpmbuild -ba paella-opencast.spec
 
 after_success:
-   - find ~/rpmbuild/
+   - curl -i -u pkg:3d37ba94-a305-4185-8989-861e2491fc https://pkg.opencast.org/upload -F file=@rpmbuild/RPMS/x86_64/${VERSION}
