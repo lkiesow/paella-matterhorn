@@ -16,6 +16,6 @@ script:
    - rpmbuild -ba paella-opencast.spec
 
 after_success:
-   - curl -i -u "${PKGUPLOADPASS}:${PKGUPLOADUSER}"
+   - curl -i -u "${PKGUPLOADUSER}:${PKGUPLOADPASS}"
      https://pkg.opencast.org/upload
      -F file=@${HOME}/rpmbuild/RPMS/x86_64/paella-opencast-${VERSION}-1.x86_64.rpm
