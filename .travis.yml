@@ -5,8 +5,14 @@ language: java
 
 jdk: oraclejdk8
 
+before_install:
+   - apt-get install rpm
+
 script:
    - mvn clean install -B
+   - rpmdev-setuptree
+   - cp target/*jar ~/rpmbuild/SOURCES
+   - rpmbuild -ba paella-opencast.spec
 
 after_success:
-   - ls -l target
+   - find ~/rpmbuild/
