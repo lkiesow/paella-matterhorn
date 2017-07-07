@@ -1,5 +1,5 @@
 ---
-sudo: false
+sudo: true
 
 language: java
 
@@ -10,7 +10,7 @@ before_install:
 
 script:
    - mvn clean install -B
-   - rpmdev-setuptree
+   - mkdir -p ~/rpmbuild/SOURCES
    - cp target/*jar ~/rpmbuild/SOURCES
    - export VERSION=$(sed -n '0,/^.*<version>\(.*\)<\/version>.*$/s//\1/p' pom.xml)
    - rpmbuild -ba paella-opencast.spec
