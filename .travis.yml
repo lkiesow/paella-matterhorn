@@ -13,7 +13,7 @@ script:
    - mkdir -p ~/rpmbuild/SOURCES
    - cp target/*jar ~/rpmbuild/SOURCES
    - export VERSION=$(sed -n '0,/^.*<version>\(.*\)<\/version>.*$/s//\1/p' pom.xml)
-   - rpmbuild -ba -D "version=${VERSION}" paella-opencast.spec
+   - rpmbuild -ba -D "version ${VERSION}" paella-opencast.spec
 
 after_success:
    - curl -i -s -f -u "${PKGUPLOADUSER}:${PKGUPLOADPASS}"

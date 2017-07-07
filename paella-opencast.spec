@@ -9,7 +9,7 @@
 
 Name:          paella-opencast
 Summary:       Paella Player for Opencast
-Version:       %{version}
+#Version:       %{version}
 Release:       1%{?dist}
 License:       GPLv3+
 
