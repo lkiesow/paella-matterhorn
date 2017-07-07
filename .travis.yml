@@ -18,4 +18,4 @@ script:
 after_success:
    - curl -i -u "${PKGUPLOADPASS}:${PKGUPLOADUSER}"
      https://pkg.opencast.org/upload
-     -F file=@rpmbuild/RPMS/x86_64/paella-opencast-${VERSION}-1.x86_64.rpm
+     -F file=@${HOME}/rpmbuild/RPMS/x86_64/paella-opencast-${VERSION}-1.x86_64.rpm
