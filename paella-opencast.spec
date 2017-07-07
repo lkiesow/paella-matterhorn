@@ -1,8 +1,15 @@
-%define debug_package %{nil}
+# vim: et:ts=3:sw=3:sts=3
+
+# Call with:
+# rpmbuild ... -D version=<VERSION> ...
+
+%global __os_install_post /usr/lib/rpm/brp-compress %{nil}
+%define __requires_exclude_from ^.*\\.jar$
+%define __provides_exclude_from ^.*\\.jar$
 
 Name:          paella-opencast
 Summary:       Paella Player for Opencast
-Version:       5.2.1
+#Version:      5.2.1
 Release:       1%{?dist}
 License:       GPLv3+
 

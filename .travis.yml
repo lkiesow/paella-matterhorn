@@ -9,13 +9,13 @@ before_install:
    - sudo apt-get install rpm
 
 script:
-   - mvn clean install -B
+   - mvn -B clean install
    - mkdir -p ~/rpmbuild/SOURCES
    - cp target/*jar ~/rpmbuild/SOURCES
    - export VERSION=$(sed -n '0,/^.*<version>\(.*\)<\/version>.*$/s//\1/p' pom.xml)
-   - rpmbuild -ba paella-opencast.spec
+   - rpmbuild -ba -D "version=${VERSION}" paella-opencast.spec
 
 after_success:
-   - curl -i -u "${PKGUPLOADUSER}:${PKGUPLOADPASS}"
-     https://pkg.opencast.org/upload
+   - curl -i -s -f -u "${PKGUPLOADUSER}:${PKGUPLOADPASS}"
      -F file=@${HOME}/rpmbuild/RPMS/x86_64/paella-opencast-${VERSION}-1.x86_64.rpm
+     https://pkg.opencast.org/upload
