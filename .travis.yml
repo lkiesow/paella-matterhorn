@@ -16,6 +16,7 @@ script:
    - rpmbuild -ba -D "version ${VERSION}" paella-opencast.spec
 
 after_success:
-   - curl -i -s -f -u "${PKGUPLOADUSER}:${PKGUPLOADPASS}"
+   - if [ ! -z "${TRAVIS_TAG}" ]; then
+     curl -i -s -f -u "${PKGUPLOADUSER}:${PKGUPLOADPASS}"
      -F file=@${HOME}/rpmbuild/RPMS/x86_64/paella-opencast-${VERSION}-1.x86_64.rpm
-     https://pkg.opencast.org/upload
+     https://pkg.opencast.org/upload; fi
